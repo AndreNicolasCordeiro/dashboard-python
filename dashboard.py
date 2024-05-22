@@ -189,3 +189,15 @@ with st.expander("Summary_Table"):
     df_sample2 = df.tail(5)[
         ["Region", "State", "City", "Category", "Sales", "Profit", "Quantity"]
     ]
+
+st.subheader("Primeiros 5 registros")
+    df_sample1["Sales"] = df_sample1["Sales"].round(2)
+    df_sample1["Profit"] = df_sample1["Profit"].round(2)
+    fig1 = ff.create_table(df_sample1, colorscale="Cividis")
+    st.plotly_chart(fig1, use_container_width=True)
+
+    st.subheader("Últimos 5 registros")
+    df_sample2["Sales"] = df_sample2["Sales"].round(2)
+    df_sample2["Profit"] = df_sample2["Profit"].round(2)
+    fig2 = ff.create_table(df_sample2, colorscale="Cividis")
+    st.plotly_chart(fig2, use_container_width=True)
