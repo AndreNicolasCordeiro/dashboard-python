@@ -201,3 +201,18 @@ st.subheader("Primeiros 5 registros")
     df_sample2["Profit"] = df_sample2["Profit"].round(2)
     fig2 = ff.create_table(df_sample2, colorscale="Cividis")
     st.plotly_chart(fig2, use_container_width=True)
+
+st.markdown("Tabela de categorias mensais")
+filtered_df["month"] = filtered_df["Order Date"].dt.month_name()
+sub_category_Year = pd.pivot_table(
+    data=filtered_df, values="Sales", index=["Sub-Category"], columns="month"
+)
+st.write(sub_category_Year.style.background_gradient(cmap="Blues"))
+
+data1 = px.scatter(filtered_df, x="Sales", y="Profit", size="Quantity")
+data1["layout"].update(
+    title="Relação Sales e Profits usando Scatter Plot",
+    titlefont=dict(size=20), xaxis=dict(title="Sales", titlefont=dict(size=19)),
+    yaxis=dict(title="Profit", titlefont=dict(size=19)),
+)
+st.plotly_chart(data1, use_container_width=True)
