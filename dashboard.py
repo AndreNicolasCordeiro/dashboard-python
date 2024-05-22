@@ -81,7 +81,6 @@ else:
 category_df = filtered_df.groupby(by=["Category"], as_index=False)["Sales"].sum()
 
 
-
 with col1:
     st.subheader("Vendas por categoria")
     fig = px.bar(
@@ -179,3 +178,14 @@ with chart2:
     fig = px.pie(filtered_df, values="Sales", names="Category", template="gridon")
     fig.update_traces(text=filtered_df["Category"], textposition="inside")
     st.plotly_chart(fig, use_container_width=True)
+
+import plotly.figure_factory as ff
+
+st.subheader(":point_right: Resumo de vendas mensal da subcategoria")
+with st.expander("Summary_Table"):
+    df_sample1 = df.head(5)[
+        ["Region", "State", "City", "Category", "Sales", "Profit", "Quantity"]
+    ]
+    df_sample2 = df.tail(5)[
+        ["Region", "State", "City", "Category", "Sales", "Profit", "Quantity"]
+    ]
